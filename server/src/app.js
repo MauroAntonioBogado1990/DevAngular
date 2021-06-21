@@ -4,7 +4,11 @@ const morgan = require('morgan')
 const app = express()
 
 app.set('port',process.env.PORT || 4000);
-app.use(morgan('dev'))
+app.use(morgan('dev'));
+//para que use express
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 //para no repetir las rutas
 app.use('/api/articles',require('./routes/articles.routes'))
 
