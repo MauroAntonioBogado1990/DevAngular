@@ -8,6 +8,43 @@
         </div>
     </div>
     <div class="col-md-8">
-
+         <table class="table table-striped">
+             <thead>
+                 <tr>
+                     <th>
+                       Articulo
+                     </th>
+                     <th>
+                       Color
+                    </th>
+                    <th>
+                       Tamaño o Número
+                    </th>
+                    <th>
+                       Marca
+                    </th>
+                    <th>
+                       Precio
+                    </th>
+                    <th>
+                       Descripción
+                    </th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <tr *ngFor="let article of articleService.articles">
+                    <td>{{article.name}}</td>
+                    <td>{{article.color}}</td>
+                    <td>{{article.size}}</td>
+                    <td>{{article.company}}</td>
+                    <td>{{article.price}}</td>
+                    <td>{{article.description}}</td>
+                        <td>
+                            <button>Editar</button>
+                            <button>Eliminar</button>
+                        </td>    
+                </tr>
+             </tbody>
+         </table>
     </div>
 </div>
