@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from 'src/services/article.service';
+import { NgForm } from '@angular/forms';
+
 @Component({
   selector: 'app-articulos',
   templateUrl: './articulos.component.html',
@@ -21,5 +23,21 @@ export class ArticulosComponent implements OnInit {
       err => console.error(err)    
     )
   }
+  addArticle(form:NgForm){
+     
+    this.articleService.createArticle(form.value).subscribe(
+       res =>{
+         this.getArticles();
+         form.reset();
+       },
+       err => console.error(err)
+     )
+  }
+  deleteArticle(id: string){
+      if(confirm('¡Esta seguro de borrar el articulo?')){
+        this.articleService.deleteArticle(id) 
+      }
+      
+    }
 
 }

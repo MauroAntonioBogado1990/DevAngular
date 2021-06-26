@@ -6,7 +6,7 @@ export interface Article {
     price: number
     //img: { type: String, required: true },
     description:string
-    createdAt:string
-    updateAt:string
-    _id:string
+    createdAt?:string
+    updateAt?:string
+    _id?:string
    }
