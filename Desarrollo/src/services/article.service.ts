@@ -30,6 +30,9 @@ export class ArticleService {
     return this.http.post(this.URL_API, article);
 
   }
+  putArticle(article:Article){
+    return this.http.put(`${this.URL_API}/${article._id}`,article);
+  }
 
   deleteArticle(_id: string){
     return this.http.delete(`${this.URL_API}/${_id}`)

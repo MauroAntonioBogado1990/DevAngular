@@ -15,29 +15,56 @@ export class ArticulosComponent implements OnInit {
        this.getArticles();
   }
 
+  resetForm(form : NgForm){
+    form.reset();
+  }
+
   getArticles(){
     this.articleService.getArticles().subscribe(
-      res => {
-        this.articleService.articles = res;
+      (res) => {
+        this.articleService.articles = res
       },
-      err => console.error(err)    
-    )
+      (err) => console.error(err)    
+    );
   }
   addArticle(form:NgForm){
-     
-    this.articleService.createArticle(form.value).subscribe(
-       res =>{
-         this.getArticles();
-         form.reset();
-       },
-       err => console.error(err)
+    if(form.value._id){
+      this.articleService.putArticle(form.value).subscribe(
+        res => console.log(res),
+        err => console.error(err)
+      )
+    }else{
+      this.articleService.createArticle(form.value).subscribe(
+   (res) =>{
+     this.getArticles();
+     form.reset();
+   },
+   err => console.error(err)
      )
+    };
+     
+    
+    
+    
+    
+    
+    
+    
   }
   deleteArticle(id: string){
-      if(confirm('¡Esta seguro de borrar el articulo?')){
-        this.articleService.deleteArticle(id) 
-      }
+      if(confirm('¿Esta seguro de borrar el articulo?')){
+        this.articleService.deleteArticle(id).subscribe(
+         (res) => {
+           this.getArticles();
+         },
+         (err) => console.error(err)
+         );
+         }
       
     }
+  editArticle(article: any) {
+    this.articleService.selectedArticle = article; 
+  
+  }
 
 }

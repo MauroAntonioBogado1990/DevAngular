@@ -3,6 +3,8 @@
         <div class="card">
             <div class="card-body">
                <form #articleForm="ngForm" (ngSubmit)="addArticle(articleForm)">
+                <input type="hidden" name="_id" [(ngModel)]="articleService.selectedArticle._id">
+               
                    <div class="form-group">
                     <input type="text" name="name" class="form-control" placeholder="Ingresar tu articulo" [(ngModel)]="articleService.selectedArticle.name">
                    </div>
@@ -21,7 +23,7 @@
                    <div class="form-group">
                     <input type="text" name="description" class="form-control" placeholder="Ingresar descripción del articulo" [(ngModel)]="articleService.selectedArticle.description">
                    </div>
-                   <button class="btn btn-primary mr-2">
+                   <button class="btn btn-primary mr-2" (click)="resetForm(articleForm)" >
                     Limpiar
                    </button>
                    <button class="btn btn-secondary">
@@ -65,10 +67,10 @@
                     <td>{{article.price}}</td>
                     <td>{{article.description}}</td>
                         <td>
-                            <button class="btn btn-secondary btn-sm" >
+                            <button class="btn btn-secondary btn-sm" (click)="editArticle(article)">
                                 <i class="material-icons">edit</i>
                             </button>
-                            <button class="btn btn-danger btn-sm"(click)="deleteArticle(article._id)">
+                            <button class="btn btn-danger btn-sm" (click)="deleteArticle(article._id)">
                                 <i class="material-icons">delete</i>
                             </button>
                         </td>    
